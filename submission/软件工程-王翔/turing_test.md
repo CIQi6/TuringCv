@@ -57,21 +57,21 @@ M_up = np.float32([[1, 0, 0], [0, 1, -100]])
 M_right = np.float32([[1, 0, 100], [0, 1, 0]])
 
 # 平移图片
-pingyi_up_img = cv2.warpAffine(img, M_up, (w, h))
-pingyi_right_img = cv2.warpAffine(img, M_right, (w, h))
+translation_up_img = cv2.warpAffine(img, M_up, (w, h))
+translation_right_img = cv2.warpAffine(img, M_right, (w, h))
 
 # 展示原图片
 cv2.imshow('img', img)
 
 # 展示平移后的图片
-cv2.imshow('pingyi_up_img', pingyi_up_img)
-cv2.imshow('pingyi_right_img', pingyi_right_img)
+cv2.imshow('translation_up_img', translation_up_img)
+cv2.imshow('translation_right_img', translation_right_img)
 
 cv2.waitKey(0)
 
 # 保存平移后的图片
-cv2.imwrite('translation_up_img.png', pingyi_up_img)
-cv2.imwrite('translation_right_img.png', pingyi_right_img)
+cv2.imwrite('translation_up_img.png', translation_up_img)
+cv2.imwrite('translation_right_img.png', translation_right_img)
 ```
 
 
@@ -96,10 +96,10 @@ new2 = cv2.flip(img, 1)
 cv2.imshow('img', img)
 
 # 展示上下翻转后的图片
-cv2.imshow('shangxia', new1)
+cv2.imshow('up_down', new1)
 
 # 展示左右翻转后的图片
-cv2.imshow('zuoyou', new2)
+cv2.imshow('left_right', new2)
 cv2.waitKey(0)
 
 # 保存翻转后图片

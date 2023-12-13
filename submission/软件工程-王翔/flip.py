@@ -16,12 +16,12 @@ new2 = cv2.flip(img, 1)
 cv2.imshow('img', img)
 
 # 展示上下翻转后的图片
-cv2.imshow('shangxia', new1)
+cv2.imshow('up_down', new1)
 
 # 展示左右翻转后的图片
-cv2.imshow('zuoyou', new2)
+cv2.imshow('left_right', new2)
 cv2.waitKey(0)
 
 # 保存翻转后图片
-cv2.imwrite('shangxia_flip.png', new1)
-cv2.imwrite('zuoyou_flip.png', new2)
+cv2.imwrite('up_down_flip.png', new1)
+cv2.imwrite('left_right_flip.png', new2)

@@ -70,8 +70,8 @@ cv2.imshow('pingyi_right_img', pingyi_right_img)
 cv2.waitKey(0)
 
 # 保存平移后的图片
-cv2.imwrite('pingyi.up_img.png', pingyi_up_img)
-cv2.imwrite('pingyi_right_img.png', pingyi_right_img)
+cv2.imwrite('translation_up_img.png', pingyi_up_img)
+cv2.imwrite('translation_right_img.png', pingyi_right_img)
 ```
 
 
@@ -103,8 +103,8 @@ cv2.imshow('zuoyou', new2)
 cv2.waitKey(0)
 
 # 保存翻转后图片
-cv2.imwrite('shangxia_flip.png', new1)
-cv2.imwrite('zuoyou_flip.png', new2)
+cv2.imwrite('up_down_flip.png', new1)
+cv2.imwrite('left_right_flip.png', new2)
 ```
 
 

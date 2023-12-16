@@ -3,36 +3,36 @@ import cv2
 from matplotlib import pyplot as plt
 import numpy as np
 
-turing=cv2.imread("D://noisy_turing.png")
-gray=cv2.imread("D://noisy_turing.png",cv2.IMREAD_GRAYSCALE)
+turing=cv2.imread("./noisy_turing.png")
+gray=cv2.imread("./noisy_turing.png",cv2.IMREAD_GRAYSCALE)
 
 def cv_show(img):
     cv2.imshow("1",img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-turing.shape#»ñÈ¡Ä¿±êÍ¼Æ¬´óÐ¡
-guide=cv2.imread("D://turing_true.jpg")#Ê¹ÓÃ´ÓÍ¼ÁéÎ¢ÐÅ¹«ÖÚºÅ·­³öÀ´µÄlogo×÷ÎªÒýµ¼Í¼Ïñguide
-guide=cv2.resize(guide,(640, 640),interpolation=cv2.INTER_LINEAR)#µ÷ÕûÒýµ¼Í¼Ïó´óÐ¡ÓëÄ¿±êÍ¼Æ¬Ò»ÖÂ
-turing=cv2.medianBlur(turing,3) #¶ÔÔ­Í¼½øÐÐÖÐÖµÂË²¨
-Filter=cv2.ximgproc.createGuidedFilter(guide=guide,radius=15,eps=200)#radiusÂË²¨Æ÷´óÐ¡ÓëepsÂË²¨Æ÷¾«¶ÈÔ½´ó£¬Í¼ÏñÔ½Æ½»¬Ô½ºÃ£¬
+#turing.shape#ï¿½ï¿½È¡Ä¿ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Ð¡
+guide=cv2.imread("./turing_true.jpg")#Ê¹ï¿½Ã´ï¿½Í¼ï¿½ï¿½Î¢ï¿½Å¹ï¿½ï¿½ÚºÅ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½logoï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½guide
+guide=cv2.resize(guide,(640, 640),interpolation=cv2.INTER_LINEAR)#ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½Ä¿ï¿½ï¿½Í¼Æ¬Ò»ï¿½ï¿½
+turing=cv2.medianBlur(turing,3) #ï¿½ï¿½Ô­Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½Ë²ï¿½
+Filter=cv2.ximgproc.createGuidedFilter(guide=guide, radius=15,eps=200)#radiusï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½epsï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½Í¼ï¿½ï¿½Ô½Æ½ï¿½ï¿½Ô½ï¿½Ã£ï¿½
 
-result=Filter.filter(turing)#¶ÔÄ¿±êÍ¼ÏñÓ¦ÓÃµ¼ÏòÂË²¨Æ÷
+result=Filter.filter(turing)#ï¿½ï¿½Ä¿ï¿½ï¿½Í¼ï¿½ï¿½Ó¦ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½
 cv_show(turing)
 cv_show(result)
 
 rows,cols,channels=result.shape
 
-Rotating = cv2.getRotationMatrix2D((cols / 2, rows / 2), 90, 1)#Ïò×óÐý×ª90¡ã
+Rotating = cv2.getRotationMatrix2D((cols / 2, rows / 2), 90, 1)#ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ª90ï¿½ï¿½
 res1 = cv2.warpAffine(result, Rotating, (cols, rows))
 cv_show(res1)
-Shifting = np.float32([[1, 0, 200], [0, 1, 100]])#x·½ÏòÆ½ÒÆ200 y·½ÏòÆ½ÒÆ100
+Shifting = np.float32([[1, 0, 200], [0, 1, 100]])#xï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½200 yï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½100
 res2 = cv2.warpAffine(result, Shifting, (cols, rows))      
  
 cv_show(res2)
 
 
 pts1 = np.float32([[0, 0], [cols , 0], [0, rows]])
-pts2 = np.float32([[cols * 0.2, rows * 0.1], [cols * 0.9, rows * 0.1], [cols * 0.2, rows * 0.8]])#¸ü¸Ä²ÎÊýÈÎÒâ±ä»»
+pts2 = np.float32([[cols * 0.2, rows * 0.1], [cols * 0.9, rows * 0.1], [cols * 0.2, rows * 0.8]])#ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä»»
  
 Any = cv2.getAffineTransform(pts1, pts2)
 res3 = cv2.warpAffine(result, Any, (cols, rows))

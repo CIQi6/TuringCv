@@ -2,8 +2,8 @@ import cv2
 from matplotlib import pyplot as plt
 import numpy as np
 
-target=cv2.imread("D://zombies.png")
-template=cv2.imread("D://head.png")
+target=cv2.imread("./zombies.png")
+template=cv2.imread("./head.png")
 def cv_show(img):
     cv2.imshow("1",img)
     cv2.waitKey(0)
